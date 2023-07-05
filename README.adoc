@@ -1,0 +1,29 @@
+= Boot 2 Batch Loader
+
+Te purpose of this project is to provide a simple boot app loads the specified number of task executions paired with one batch job theat contains one reader and writer  load a database with the specifed batch and task executions .
+
+
+
+== Requirements:
+
+* Java 8 or Above
+
+== Classes:
+
+* Boot2LoaderApplication - the Spring Boot Main Application
+* BatchTaskConfiguration - the configuration for the Spring Batch jobs
+* Boot2LoadProperties - the properties on how the database should be loaded
+
+== Build:
+
+[source,shell]
+----
+mvn clean package
+----
+
+== Run:
+
+[source,shell]
+----
+java -jar target/batch-job-3.0.0.jar --jobsToCreate=<your desired total>
+----
