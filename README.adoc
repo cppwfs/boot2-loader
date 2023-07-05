@@ -25,5 +25,5 @@ mvn clean package
 
 [source,shell]
 ----
-java -jar target/batch-job-3.0.0.jar --jobsToCreate=<your desired total>
+java -jar target/batch-job-3.0.0.jar --jobsToCreate=<your desired total tasks/jobs.  Defaults to 10.>
 ----
