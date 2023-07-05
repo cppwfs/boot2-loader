@@ -25,5 +25,5 @@ mvn clean package
 
 [source,shell]
 ----
-java -jar target/batch-job-3.0.0.jar --jobsToCreate=<your desired total tasks/jobs.  Defaults to 10.>
+java -jar target/boot2-loader-0.0.1-SNAPSHOT.jar --jobsToCreate=<your desired total tasks/jobs.  Defaults to 10.>
 ----
