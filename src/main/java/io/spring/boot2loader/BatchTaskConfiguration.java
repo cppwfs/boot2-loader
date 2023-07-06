@@ -16,8 +16,6 @@
 
 package io.spring.boot2loader;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameter;
@@ -25,7 +23,6 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
@@ -54,13 +51,8 @@ import java.util.*;
 @EnableConfigurationProperties({ Boot2LoadProperties.class })
 public class BatchTaskConfiguration {
 
-	private static final Log logger = LogFactory.getLog(Boot2LoadProperties.class);
-
 	@Autowired
 	public JobBuilderFactory jobBuilderFactory;
-
-	@Autowired
-	public StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
 	private JobLauncher jobLauncher;
@@ -107,7 +99,7 @@ public class BatchTaskConfiguration {
 	@Bean
 	public CommandLineRunner commandLineRunner(DataSource dataSource, JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new CommandLineRunner() {
-			Job job = jobBuilderFactory.get("LoadGenerated Batch ")
+			Job job = jobBuilderFactory.get("LoadGenerated Batch 4.0")
 					.start(new StepBuilder("job1step1").repository(jobRepository).transactionManager(transactionManager)
 							.<String, String>chunk(5)
 							.reader(new ListItemReader<>(Collections.singletonList("hi")))
@@ -118,8 +110,8 @@ public class BatchTaskConfiguration {
 			@Override
 			public void run(String... args) throws Exception {
 				List<String> commandLineArgs = new ArrayList<>();
-				commandLineArgs.add("-–spring.cloud.task.tablePrefix=BOOT3_TASK_");
-				commandLineArgs.add("-–spring.batch.jdbc.table-prefix=BOOT3_BATCH_");
+				commandLineArgs.add("-–spring.cloud.task.tablePrefix=TASK_");
+				commandLineArgs.add("-–spring.batch.jdbc.table-prefix=BATCH_");
 
 				for (int x = 0; x < boot2LoadProperties.jobsToCreate ; x++) {
 					String uuid = UUID.randomUUID().toString();

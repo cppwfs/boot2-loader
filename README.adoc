@@ -1,6 +1,6 @@
 = Boot 2 Batch Loader
 
-Te purpose of this project is to provide a simple boot app loads the specified number of task executions paired with one batch job theat contains one reader and writer  load a database with the specifed batch and task executions .
+Te purpose of this project is to provide a simple boot app loads the specified number of task executions paired with one batch job that contains one reader and writer  load a database with the specified batch and task executions .
 
 
 
